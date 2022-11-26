@@ -90,4 +90,4 @@ callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5)
 best_model.fit(x_test, y_test, epochs=60,
                validation_split=0.25, initial_epoch=15, callbacks=[callback])
 
-best_model.save('./models/mmodel2-02.h5')
+best_model.save('./models/mmodel2-01.h5')
