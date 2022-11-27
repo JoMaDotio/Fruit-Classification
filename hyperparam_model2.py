@@ -43,7 +43,8 @@ def build_model(hp: keras_tuner.HyperParameters):
         model.add(Conv2D(
             filters=hp.Int(f'conv_l1_{i}', min_value=25,
                            max_value=250, step=25),
-            kernel_size=hp.Choice(f'conv_l1_kernel_{i}', [3])))
+            kernel_size=hp.Choice(f'conv_l1_kernel_{i}', [3]),
+            activation='relu'))
 
     model.add(MaxPooling2D(pool_size=6))
 
@@ -51,7 +52,8 @@ def build_model(hp: keras_tuner.HyperParameters):
         model.add(Conv2D(
             filters=hp.Int(f'conv_l2_{i}', min_value=80,
                            max_value=180, step=20),
-            kernel_size=hp.Choice(f'conv_l2_kernel_{i}', [3, 5])))
+            kernel_size=hp.Choice(f'conv_l2_kernel_{i}', [3, 5]),
+            activation='relu'))
 
     model.add(MaxPooling2D(pool_size=6))
 
@@ -90,4 +92,4 @@ callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5)
 best_model.fit(x_test, y_test, epochs=60,
                validation_split=0.25, initial_epoch=15, callbacks=[callback])
 
-best_model.save('./models/mmodel2-01.h5')
+best_model.save('./models/mmodel2-02.h5')
